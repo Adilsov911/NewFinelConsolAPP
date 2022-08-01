@@ -1,0 +1,5 @@
+C:\Users\adils\source\repos\AptekMenage\AptekMenage\obj\Debug\net5.0\AptekMenage.csproj.AssemblyReference.cache
+C:\Users\adils\source\repos\AptekMenage\AptekMenage\obj\Debug\net5.0\AptekMenage.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\adils\source\repos\AptekMenage\AptekMenage\obj\Debug\net5.0\AptekMenage.AssemblyInfoInputs.cache
+C:\Users\adils\source\repos\AptekMenage\AptekMenage\obj\Debug\net5.0\AptekMenage.AssemblyInfo.cs
+C:\Users\adils\source\repos\AptekMenage\AptekMenage\obj\Debug\net5.0\AptekMenage.csproj.CoreCompileInputs.cache
