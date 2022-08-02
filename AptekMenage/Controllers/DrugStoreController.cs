@@ -21,9 +21,11 @@ namespace AptekMenage.Controllers
         }
         public void Creat()
         {
+            
             var owners = ownerRepository.GetAll();
             if (owners.Count > 0)
             {
+                
                 Helper.WriteTextWithColor(ConsoleColor.Cyan, "Enter Drug Store name");
                 string drugName = Console.ReadLine();
                 Helper.WriteTextWithColor(ConsoleColor.Cyan, "Enter DrugStore Adress");
@@ -53,7 +55,7 @@ namespace AptekMenage.Controllers
                             Owner = owner
                         };
                         var creatDrugstore = durgStoreRepository.Create(drugStore);
-                        Helper.WriteTextWithColor(ConsoleColor.Green, $"New DrugStore Created Name {drugStore.Name}");
+                        Helper.WriteTextWithColor(ConsoleColor.Green, $"New DrugStore Created Name {drugStore.Name} {drugStore.Adress} {drugStore.ContactNumber} Owner Name {drugStore.Owner}");
                     }
                     else
                     {
@@ -192,6 +194,10 @@ namespace AptekMenage.Controllers
             {
                 Helper.WriteTextWithColor(ConsoleColor.Red, "Nothing any Owner and Stores");
             }
+        }
+        public void Sale()
+        {
+
         }
     }
 }

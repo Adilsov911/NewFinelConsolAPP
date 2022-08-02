@@ -9,6 +9,7 @@ namespace AptekMenage
     {
         static void Main(string[] args)
         {
+            DruggistController druggistController = new DruggistController();
             OwnerController ownerController = new OwnerController();
             AdminController admincontroller = new AdminController();
             DrugStoreController drugStoreController = new DrugStoreController();
@@ -24,6 +25,7 @@ namespace AptekMenage
                     Helper.WriteTextWithColor(ConsoleColor.Blue, "Main Menu:");
                     Helper.WriteTextWithColor(ConsoleColor.Cyan, "Owner Menu - 1");
                     Helper.WriteTextWithColor(ConsoleColor.Cyan, "DrugStore Menu - 2");
+                    Helper.WriteTextWithColor(ConsoleColor.Cyan, "Druggist Menu - 3");
 
                     Helper.WriteTextWithColor(ConsoleColor.Magenta, "Select Options:");
                     string number = Console.ReadLine();
@@ -112,6 +114,27 @@ namespace AptekMenage
                             else
                             {
                                 Helper.WriteTextWithColor(ConsoleColor.Red, "Please, Select Correct Options...");
+                            }
+                        }
+                        else if (selectedNumber == 3)
+                        {
+                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "1 - Create DrugStore");
+                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "2 - Update DrugStore");
+                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "3 - GetAll DrugStore");
+                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "4 - Delete DrugStore");
+                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "5 - Get All Owners DrugStores");
+                            Helper.WriteTextWithColor(ConsoleColor.Magenta, "Select Options:");
+                            number = Console.ReadLine();
+
+                            result = int.TryParse(number, out selectedNumber);
+                            if (selectedNumber >= 0 && selectedNumber <= 5)
+                            {
+                                switch (selectedNumber)
+                                {
+                                    case (int)DruggistOptions.DruggistCreat:
+                                        druggistController.Creat();
+                                        break;
+                                }
                             }
                         }
                         else

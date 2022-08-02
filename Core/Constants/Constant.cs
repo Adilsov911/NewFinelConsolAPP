@@ -22,8 +22,12 @@ namespace Core.Constants
         GetAllDrugStore,
         DeleteDrugStore,
         GetOwnerDrugStore,
-        
-
+    }
+    public enum DruggistOptions
+    {
+        Exit,
+        DruggistCreat,
+        DruggistUpdate,
     }
 
 
