@@ -37,11 +37,11 @@ namespace AptekMenage
                     {
                         if (selectedNumber == 1)
                         {
-                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "1 - Create Owner");
-                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "2 - Update Owner");
-                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "3 - GetAll Owner");
-                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "4 - Delete Owner");
-                            Helper.WriteTextWithColor(ConsoleColor.Magenta, "Select Options:");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "1 - Create Owner");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "2 - Update Owner");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "3 - GetAll Owner");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "4 - Delete Owner");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "Select Options:");
                             number = Console.ReadLine();
 
 
@@ -79,11 +79,11 @@ namespace AptekMenage
                         }
                         else if (selectedNumber == 2)
                         {
-                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "1 - Create DrugStore");
-                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "2 - Update DrugStore");
-                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "3 - GetAll DrugStore");
-                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "4 - Delete DrugStore");
-                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "5 - Get All Owners DrugStores");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "1 - Create DrugStore");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "2 - Update DrugStore");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "3 - GetAll DrugStore");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "4 - Delete DrugStore");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "5 - Get All Owners DrugStores");
                             Helper.WriteTextWithColor(ConsoleColor.Magenta, "Select Options:");
                             number = Console.ReadLine();
 
@@ -106,6 +106,12 @@ namespace AptekMenage
                                     case (int)DrugStoreOptions.GetOwnerDrugStore:
                                         drugStoreController.GetAllOwnerStore();
                                         break;
+                                        case(int)DrugStoreOptions.DeleteDrugStore:
+                                        drugStoreController.Delete();
+                                        break;
+                                    case (int)OwnerOptions.Exit:
+                                        ownerController.Exit();
+                                        break;
 
 
 
@@ -118,11 +124,11 @@ namespace AptekMenage
                         }
                         else if (selectedNumber == 3)
                         {
-                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "1 - Create DrugStore");
-                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "2 - Update DrugStore");
-                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "3 - GetAll DrugStore");
-                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "4 - Delete DrugStore");
-                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "5 - Get All Owners DrugStores");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "1 - Create Druggist");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "2 - Update Druggist");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "3 - GetAll Druggist");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "4 - Delete Druggist");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "5 - Get All Druggist in DrugStore");
                             Helper.WriteTextWithColor(ConsoleColor.Magenta, "Select Options:");
                             number = Console.ReadLine();
 
@@ -134,8 +140,21 @@ namespace AptekMenage
                                     case (int)DruggistOptions.DruggistCreat:
                                         druggistController.Creat();
                                         break;
+                                    case (int)DruggistOptions.GetAll:
+                                        druggistController.GetAll();
+                                        break;
+                                    case (int)DruggistOptions.DruggistUpdate:
+                                        druggistController.Update();
+                                        break;
+                                    case (int)DruggistOptions.GetAllDruggistinDrugStore:
+                                        druggistController.GetAllDruggistinDrugStore();
+                                        break;
+                                    case (int)DruggistOptions.Delete:
+                                        druggistController.Delete();
+                                        break;
                                 }
                             }
+                           
                         }
                         else
                         {

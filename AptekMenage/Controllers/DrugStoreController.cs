@@ -55,7 +55,7 @@ namespace AptekMenage.Controllers
                             Owner = owner
                         };
                         var creatDrugstore = durgStoreRepository.Create(drugStore);
-                        Helper.WriteTextWithColor(ConsoleColor.Green, $"New DrugStore Created Name {drugStore.Name} {drugStore.Adress} {drugStore.ContactNumber} Owner Name {drugStore.Owner}");
+                        Helper.WriteTextWithColor(ConsoleColor.Green, $"New DrugStore Created Name {drugStore.Name} {drugStore.Adress} {drugStore.ContactNumber} Owner Name {drugStore.Owner.Name}");
                     }
                     else
                     {
@@ -121,12 +121,14 @@ namespace AptekMenage.Controllers
                             {
                                 DrugStore drugStore1 = new DrugStore()
                                 {
+                                    Id = drugStore.Id,
                                     Name = newName,
                                     Adress = newAdress,
                                     ContactNumber = newNumber,
                                     Owner = owner
                                 };
                                 var creatDrugstore = durgStoreRepository.Create(drugStore);
+                                Helper.WriteTextWithColor(ConsoleColor.Green, $"Drug store is updated {drugStore.Name} {drugStore.Adress}{drugStore.ContactNumber} Owner {drugStore.Owner.Name}");
                             }
                             else
                             {
@@ -198,6 +200,47 @@ namespace AptekMenage.Controllers
         public void Sale()
         {
 
+        }
+        public void Delete()
+        {
+            var drugStores = durgStoreRepository.GetAll();
+            if (drugStores.Count>0)
+            {
+                Helper.WriteTextWithColor(ConsoleColor.Green, "All DrugStores");
+                foreach (var drugStore in drugStores)
+                {
+                    Helper.WriteTextWithColor(ConsoleColor.Cyan, $"Drug Store Id - {drugStore.Id} Owner Name-{drugStore.Owner.Name} ");
+                }
+                id: Helper.WriteTextWithColor(ConsoleColor.Yellow, "Enter DrugStore Id");
+                int chosenId;
+                string id = Console.ReadLine();
+                var result = int.TryParse(id, out chosenId);
+                if (result)
+                {
+                    var drugStore = durgStoreRepository.Get(d=>d.Id == chosenId);
+                    if (drugStore!=null)
+                    {
+                        string name = drugStore.Name;
+                        durgStoreRepository.Delete(drugStore);
+                        Helper.WriteTextWithColor(ConsoleColor.Green, $"{name} is Deleted");
+                    }
+                    else
+                    {
+                        Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct id");
+                        goto id;
+                    }
+
+                }
+                else
+                {
+                    Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct format id");
+                    goto id;
+                }
+            }
+            else
+            {
+                Helper.WriteTextWithColor(ConsoleColor.Red, "Nothing any Drug Store");
+            }
         }
     }
 }

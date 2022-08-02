@@ -75,6 +75,7 @@ namespace AptekMenage.Controllers
                         string newSurname = Console.ReadLine();
                         var newOwner = new Owner
                         {
+                            Id = chosenId,
                             Name = newName,
                             Surname = newSurname,
 
