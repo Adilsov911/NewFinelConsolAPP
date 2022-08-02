@@ -5,13 +5,14 @@ using System;
 
 namespace AptekMenage
 {
-    public class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
             OwnerController ownerController = new OwnerController();
             AdminController admincontroller = new AdminController();
-            var admin = admincontroller.Authenticade();
+            DrugStoreController drugStoreController = new DrugStoreController();
+        goadmin: var admin = admincontroller.Authenticade();
 
             if (admin != null)
             {
@@ -22,10 +23,7 @@ namespace AptekMenage
                 {
                     Helper.WriteTextWithColor(ConsoleColor.Blue, "Main Menu:");
                     Helper.WriteTextWithColor(ConsoleColor.Cyan, "Owner Menu - 1");
-                    
-
-
-                    Console.WriteLine("--------------------------------------------------");
+                    Helper.WriteTextWithColor(ConsoleColor.Cyan, "DrugStore Menu - 2");
 
                     Helper.WriteTextWithColor(ConsoleColor.Magenta, "Select Options:");
                     string number = Console.ReadLine();
@@ -46,7 +44,7 @@ namespace AptekMenage
 
 
                             result = int.TryParse(number, out selectedNumber);
-                            if (selectedNumber >= 0 && selectedNumber <= 6)
+                            if (selectedNumber >= 0 && selectedNumber <= 4)
                             {
                                 switch (selectedNumber)
                                 {
@@ -70,9 +68,50 @@ namespace AptekMenage
 
                                 }
                             }
+
+
                             else
                             {
                                 Helper.WriteTextWithColor(ConsoleColor.Red, "Please enter correct number");
+                            }
+                        }
+                        else if (selectedNumber == 2)
+                        {
+                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "1 - Create DrugStore");
+                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "2 - Update DrugStore");
+                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "3 - GetAll DrugStore");
+                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "4 - Delete DrugStore");
+                            Helper.WriteTextWithColor(ConsoleColor.Yellow, "5 - Get All Owners DrugStores");
+                            Helper.WriteTextWithColor(ConsoleColor.Magenta, "Select Options:");
+                            number = Console.ReadLine();
+
+
+                            result = int.TryParse(number, out selectedNumber);
+                            if (selectedNumber >= 0 && selectedNumber <= 5)
+                            {
+                                switch (selectedNumber)
+                                {
+
+                                    case (int)DrugStoreOptions.CreatDrugStore:
+                                        drugStoreController.Creat();
+                                        break;
+                                    case (int)DrugStoreOptions.UpdateDrugStore:
+                                        drugStoreController.Update();
+                                        break;
+                                    case (int)DrugStoreOptions.GetAllDrugStore:
+                                        drugStoreController.GetAll();
+                                        break;
+                                    case (int)DrugStoreOptions.GetOwnerDrugStore:
+                                        drugStoreController.GetAllOwnerStore();
+                                        break;
+
+
+
+                                }
+                            }
+                            else
+                            {
+                                Helper.WriteTextWithColor(ConsoleColor.Red, "Please, Select Correct Options...");
                             }
                         }
                         else
@@ -80,17 +119,13 @@ namespace AptekMenage
                             Helper.WriteTextWithColor(ConsoleColor.Red, "Please, Select Correct Options...");
                         }
                     }
-                    else
-                    {
-                        Helper.WriteTextWithColor(ConsoleColor.Red, "Please, Select Correct Options...");
-                    }
-
                 }
             }
             else
             {
                 Helper.WriteTextWithColor(ConsoleColor.Red, "Username or Password incorrect");
-                
+                goto goadmin;
+
             }
         }
     }

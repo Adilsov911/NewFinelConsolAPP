@@ -3,3 +3,13 @@ C:\Users\adils\source\repos\AptekMenage\DataAcces\obj\Debug\net5.0\DataAcces.Gen
 C:\Users\adils\source\repos\AptekMenage\DataAcces\obj\Debug\net5.0\DataAcces.AssemblyInfoInputs.cache
 C:\Users\adils\source\repos\AptekMenage\DataAcces\obj\Debug\net5.0\DataAcces.AssemblyInfo.cs
 C:\Users\adils\source\repos\AptekMenage\DataAcces\obj\Debug\net5.0\DataAcces.csproj.CoreCompileInputs.cache
+C:\Users\adils\source\repos\AptekMenage\DataAcces\bin\Debug\net5.0\DataAcces.deps.json
+C:\Users\adils\source\repos\AptekMenage\DataAcces\bin\Debug\net5.0\DataAcces.dll
+C:\Users\adils\source\repos\AptekMenage\DataAcces\bin\Debug\net5.0\DataAcces.pdb
+C:\Users\adils\source\repos\AptekMenage\DataAcces\bin\Debug\net5.0\Core.dll
+C:\Users\adils\source\repos\AptekMenage\DataAcces\bin\Debug\net5.0\Core.pdb
+C:\Users\adils\source\repos\AptekMenage\DataAcces\obj\Debug\net5.0\DataAcces.csproj.CopyComplete
+C:\Users\adils\source\repos\AptekMenage\DataAcces\obj\Debug\net5.0\DataAcces.dll
+C:\Users\adils\source\repos\AptekMenage\DataAcces\obj\Debug\net5.0\refint\DataAcces.dll
+C:\Users\adils\source\repos\AptekMenage\DataAcces\obj\Debug\net5.0\DataAcces.pdb
+C:\Users\adils\source\repos\AptekMenage\DataAcces\obj\Debug\net5.0\ref\DataAcces.dll

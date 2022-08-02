@@ -35,10 +35,18 @@ namespace AptekMenage.Controllers
         public void GetAll()
         {
             var owners = ownerRepository.GetAll();
-            Helper.WriteTextWithColor(ConsoleColor.Cyan, "All Owners");
-            foreach (var owner in owners)
+            if (owners.Count > 0)
             {
-                Helper.WriteTextWithColor(ConsoleColor.Cyan, $"{owner.Name} {owner.Surname} {owner.DrugStores}");
+                Helper.WriteTextWithColor(ConsoleColor.Cyan, "All Owners");
+                foreach (var owner in owners)
+                {
+                    Helper.WriteTextWithColor(ConsoleColor.Cyan, $"{owner.Name} {owner.Surname} {owner.DrugStores}");
+                }
+
+            }
+            else
+            {
+                Helper.WriteTextWithColor(ConsoleColor.Red, "Nothing any Owners");
             }
         }
         public void Update()

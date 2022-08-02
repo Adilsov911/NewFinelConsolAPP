@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAcces.Context
 {
-    public class DbContext
+    static class DbContext
     {
         static DbContext()
         {

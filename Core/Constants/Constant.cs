@@ -14,6 +14,17 @@ namespace Core.Constants
         GetAllOwner,
         DeleteOwner
     }
+    public enum DrugStoreOptions
+    {
+        Exit,
+        CreatDrugStore,
+        UpdateDrugStore,
+        GetAllDrugStore,
+        DeleteDrugStore,
+        GetOwnerDrugStore,
+        
+
+    }
 
 
 }
