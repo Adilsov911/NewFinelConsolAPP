@@ -32,6 +32,12 @@ namespace Core.Constants
         Delete,
         GetAllDruggistinDrugStore,
     }
+    public enum DrugOptions
+    {
+        Exit,
+        DrugCreat,
+
+    }
 
 
 }

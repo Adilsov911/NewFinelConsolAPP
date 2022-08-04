@@ -9,6 +9,7 @@ namespace AptekMenage
     {
         static void Main(string[] args)
         {
+            DrugController drugController = new DrugController();
             DruggistController druggistController = new DruggistController();
             OwnerController ownerController = new OwnerController();
             AdminController admincontroller = new AdminController();
@@ -26,6 +27,7 @@ namespace AptekMenage
                     Helper.WriteTextWithColor(ConsoleColor.Cyan, "Owner Menu - 1");
                     Helper.WriteTextWithColor(ConsoleColor.Cyan, "DrugStore Menu - 2");
                     Helper.WriteTextWithColor(ConsoleColor.Cyan, "Druggist Menu - 3");
+                    Helper.WriteTextWithColor(ConsoleColor.Cyan, "Drug Menu - 4");
 
                     Helper.WriteTextWithColor(ConsoleColor.Magenta, "Select Options:");
                     string number = Console.ReadLine();
@@ -155,6 +157,28 @@ namespace AptekMenage
                                 }
                             }
                            
+                        }
+                        else if (selectedNumber == 4)
+                        {
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "1 - Create Drug");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "2 - Update Drug");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "3 - GetAll Drug");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "4 - Delete Drug");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "5 - ");
+                            Helper.WriteTextWithColor(ConsoleColor.Magenta, "Select Options:");
+                            number = Console.ReadLine();
+
+                            result = int.TryParse(number, out selectedNumber);
+                            if (selectedNumber >= 0 && selectedNumber <= 5)
+                            {
+                                switch (selectedNumber)
+                                {
+                                    case (int)DrugOptions.DrugCreat:
+                                        drugController.Creat();
+                                        break;
+                                }
+                            }
+
                         }
                         else
                         {

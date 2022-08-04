@@ -18,7 +18,7 @@ namespace DataAcces.Repositories.Implementations
             entity.Id = id;
             try
             {
-                DbContext.Druggis.Add(entity);
+                DbContext.Drugs.Add(entity);
 
             }
             catch (Exception e)
@@ -33,7 +33,7 @@ namespace DataAcces.Repositories.Implementations
         {
             try
             {
-                DbContext.Druggis.Remove(entity);
+                DbContext.Drugs.Remove(entity);
 
             }
             catch (Exception e)
@@ -52,11 +52,11 @@ namespace DataAcces.Repositories.Implementations
 
                 if (filter == null)
                 {
-                    return DbContext.Druggis[0];
+                    return DbContext.Drugs[0];
                 }
                 else
                 {
-                    return DbContext.Druggis.Find(filter);
+                    return DbContext.Drugs.Find(filter);
                 }
             }
             catch (Exception e)
@@ -74,11 +74,11 @@ namespace DataAcces.Repositories.Implementations
 
                 if (filter == null)
                 {
-                    return DbContext.Druggis;
+                    return DbContext.Drugs;
                 }
                 else
                 {
-                    return DbContext.Druggis.FindAll(filter);
+                    return DbContext.Drugs.FindAll(filter);
                 }
             }
             catch (Exception e)
@@ -94,12 +94,12 @@ namespace DataAcces.Repositories.Implementations
             try
             {
 
-                var drug = DbContext.Druggis.Find(g => g.Id == entity.Id);
-                if (drug != null)
+                var drugs = DbContext.Drugs.Find(g => g.Id == entity.Id);
+                if (drugs != null)
                 {
-                    drug.Price = entity.Price;
-                    drug.Count = entity.Count;
-                    drug.Name = entity.Name;
+                    drugs.Price = entity.Price;
+                    drugs.Count = entity.Count;
+                    drugs.Name = entity.Name;
 
 
 

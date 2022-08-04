@@ -12,7 +12,7 @@ namespace DataAcces.Context
     {
         static DbContext()
         {
-            Druggis = new List<Drug>();
+            Drugs = new List<Drug>();
             Druggists = new List<Druggist>();
             Drugstores = new List<DrugStore>();
             Owners = new List<Owner>();
@@ -29,7 +29,7 @@ namespace DataAcces.Context
             Admins.Add(admin2);
 
         }
-        public static List<Drug> Druggis { get; set; }
+        public static List<Drug> Drugs { get; set; }
         public static List<Druggist> Druggists { get; set; }
         public static List<DrugStore> Drugstores { get; set; }
         public static List<Owner> Owners { get; set; }

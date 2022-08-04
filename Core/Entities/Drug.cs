@@ -15,7 +15,7 @@ namespace Core.Entities
         public double Price { get; set; }
         public int Count { get; set; }
 
-        public List<DrugStore> DrugStores { get; set; }
+        public DrugStore DrugStore { get; set; }
     }
 
 }

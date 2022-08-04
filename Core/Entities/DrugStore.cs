@@ -19,5 +19,6 @@ namespace Core.Entities
         public List<Drug> Drugs { get; set; }
 
         public List<Druggist> Druggists { get; set; }
+        
     }
 }
