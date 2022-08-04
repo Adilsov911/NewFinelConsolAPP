@@ -134,10 +134,10 @@ namespace AptekMenage.Controllers
                         bool results = byte.TryParse(count, out drugCount);
                         if (results)
                         {
-                            if (drugCount>0)
+                            if (drugCount > 0)
                             {
 
-                            age: Helper.WriteTextWithColor(ConsoleColor.Green, "Enter new Price");
+                            price: Helper.WriteTextWithColor(ConsoleColor.Green, "Enter new Price");
                                 string price = Console.ReadLine();
                                 double drugPrice;
                                 bool resultss = double.TryParse(price, out drugPrice);
@@ -176,28 +176,33 @@ namespace AptekMenage.Controllers
                                         else
                                         {
                                             Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct id");
+                                            goto id;
                                         }
                                     }
                                     else
                                     {
                                         Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct format id");
+                                        goto id;
                                     }
 
                                 }
                                 else
                                 {
                                     Helper.WriteTextWithColor(ConsoleColor.Red, "Enter number for price");
+                                    goto price;
                                 }
                             }
                             else
                             {
                                 Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct Count");
+                                goto count;
                             }
 
                         }
                         else
                         {
                             Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct Format count");
+                            goto count;
                         }
 
 
@@ -211,6 +216,7 @@ namespace AptekMenage.Controllers
                 else
                 {
                     Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct format id");
+                    goto idd;
                 }
             }
             else
@@ -218,5 +224,106 @@ namespace AptekMenage.Controllers
                 Helper.WriteTextWithColor(ConsoleColor.Red, "Nothing any drug");
             }
         }
+        public void Delete()
+        {
+            var drugs = drugRepository.GetAll();
+            if (drugs.Count > 0)
+            {
+                Helper.WriteTextWithColor(ConsoleColor.Green, "All Drug");
+                foreach (var drug in drugs)
+                {
+                    Helper.WriteTextWithColor(ConsoleColor.Cyan, $" Id - {drug.Id} Name-{drug.Name} Drug Store - {drug.DrugStore.Name}  ");
+                }
+            id: Helper.WriteTextWithColor(ConsoleColor.Yellow, "Enter Drug Id");
+                int chosenId;
+                string id = Console.ReadLine();
+                var result = int.TryParse(id, out chosenId);
+                if (result)
+                {
+                    var drug = drugRepository.Get(d => d.Id == chosenId);
+                    if (drug != null)
+                    {
+                        string name = drug.Name;
+                        drugRepository.Delete(drug);
+                        Helper.WriteTextWithColor(ConsoleColor.Green, $"{name} is Deleted");
+                    }
+                    else
+                    {
+
+                        Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct format id");
+                        goto id;
+                    }
+                }
+                else
+                {
+                    Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct format id");
+                    goto id;
+                }
+            }
+            else
+            {
+                Helper.WriteTextWithColor(ConsoleColor.Red, "Nothing any Drugs");
+
+            }
+        }
+        public void GetAll()
+        {
+            var drugs = drugRepository.GetAll();
+            if (drugs.Count > 0)
+            {
+                Helper.WriteTextWithColor(ConsoleColor.Green, "All Drug");
+                foreach (var drug in drugs)
+                {
+                    Helper.WriteTextWithColor(ConsoleColor.Cyan, $" Id - {drug.Id} Name-{drug.Name} Price: {drug.Price} Count:{drug.Count} Drug Store - {drug.DrugStore.Name}  ");
+                }
+            }
+            else
+            {
+                Helper.WriteTextWithColor(ConsoleColor.Red, "Nothing Any Drugs");
+            }
+        }
+        public void GetAllStoresDrug()
+        {
+
+            var drugStores = durgStoreRepository.GetAll();
+            if (drugStores.Count > 0)
+            {
+                Helper.WriteTextWithColor(ConsoleColor.Green, "All Drug Stores");
+                foreach (var drugStore in drugStores)
+                {
+                    Helper.WriteTextWithColor(ConsoleColor.Cyan, $"Drug Store: {drugStore.Id} Drugs Name {drugStore.Name}");
+                }
+                idd: Helper.WriteTextWithColor(ConsoleColor.Green, "Enter Drug Store Id");
+                int chosenId;
+                string id = Console.ReadLine();
+                var result = int.TryParse(id, out chosenId);
+                if (result)
+                {
+                    var drugStore = durgStoreRepository.Get(d => d.Id == chosenId);
+                    if (drugStore != null)
+                    {
+                        Helper.WriteTextWithColor(ConsoleColor.Green, $"Drug Store Name:{drugStore.Name} Drug Name:{drugStore.Drugs}");
+                    }
+                    else
+                    {
+                        Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct id");
+                        goto idd;
+                    }
+
+                }
+                else
+                {
+                    Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct format id");
+                    goto idd;
+                }
+                
+            }
+            else
+            {
+                Helper.WriteTextWithColor(ConsoleColor.Red, "Nothing Any Drugs");
+            }
+        }
+
+
     }
 }
