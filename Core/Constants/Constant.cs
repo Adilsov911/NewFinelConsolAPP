@@ -29,7 +29,6 @@ namespace Core.Constants
         Exit,
         DruggistCreat,
         DruggistUpdate,
-      
         GetAll,
         Delete,
         GetAllDruggistinDrugStore,

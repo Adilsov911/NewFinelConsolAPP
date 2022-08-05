@@ -14,20 +14,21 @@ namespace AptekMenage
             OwnerController ownerController = new OwnerController();
             AdminController admincontroller = new AdminController();
             DrugStoreController drugStoreController = new DrugStoreController();
-        goadmin: var admin = admincontroller.Authenticade();
+        admin: var admin = admincontroller.Authenticade();
 
             if (admin != null)
             {
                 Helper.WriteTextWithColor(ConsoleColor.Green, $"Welcome, {admin.Username}");
                 Helper.WriteTextWithColor(ConsoleColor.White, "------");
 
-                while (true)
+               manu: while (true)
                 {
                     Helper.WriteTextWithColor(ConsoleColor.Blue, "Main Menu:");
                     Helper.WriteTextWithColor(ConsoleColor.Cyan, "Owner Menu - 1");
                     Helper.WriteTextWithColor(ConsoleColor.Cyan, "DrugStore Menu - 2");
                     Helper.WriteTextWithColor(ConsoleColor.Cyan, "Druggist Menu - 3");
                     Helper.WriteTextWithColor(ConsoleColor.Cyan, "Drug Menu - 4");
+                    Helper.WriteTextWithColor(ConsoleColor.Cyan, "Exit Admin - 0");
 
                     Helper.WriteTextWithColor(ConsoleColor.Magenta, "Select Options:");
                     string number = Console.ReadLine();
@@ -43,6 +44,7 @@ namespace AptekMenage
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "2 - Update Owner");
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "3 - GetAll Owner");
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "4 - Delete Owner");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "0 - Main Menu");
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "Select Options:");
                             number = Console.ReadLine();
 
@@ -66,7 +68,7 @@ namespace AptekMenage
                                         ownerController.Delete();
                                         break;
                                     case (int)OwnerOptions.Exit:
-                                        ownerController.Exit();
+                                        goto manu;
                                         break;
 
 
@@ -87,6 +89,7 @@ namespace AptekMenage
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "4 - GetAll DrugStore");
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "5 - Delete DrugStore");
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "6 - Get All Owners DrugStores");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "0 - Main Menu");
                             Helper.WriteTextWithColor(ConsoleColor.Magenta, "Select Options:");
                             number = Console.ReadLine();
 
@@ -121,6 +124,7 @@ namespace AptekMenage
 
 
 
+
                                 }
                             }
                             else
@@ -135,6 +139,7 @@ namespace AptekMenage
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "3 - GetAll Druggist");
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "4 - Delete Druggist");
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "5 - Get All Druggist in DrugStore");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "0 - Main Menu");
                             Helper.WriteTextWithColor(ConsoleColor.Magenta, "Select Options:");
                             number = Console.ReadLine();
 
@@ -158,6 +163,9 @@ namespace AptekMenage
                                     case (int)DruggistOptions.Delete:
                                         druggistController.Delete();
                                         break;
+                                    case (int)OwnerOptions.Exit:
+                                        goto manu;
+                                        break;
                                 }
                             }
                            
@@ -169,6 +177,7 @@ namespace AptekMenage
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "3 - Delete Drug");
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "4 - GetAll Drug");
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "5 - Get All Drug from Drug Store");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "0 - Main Menu");
                             Helper.WriteTextWithColor(ConsoleColor.Magenta, "Select Options:");
                             number = Console.ReadLine();
 
@@ -192,9 +201,16 @@ namespace AptekMenage
                                     case (int)DrugOptions.GetAllDrugsDrugStore:
                                         drugController.GetAllStoresDrug();
                                         break;
+                                    case (int)OwnerOptions.Exit:
+                                        goto manu;
+                                        break;
                                 }
                             }
 
+                        }
+                        else if (selectedNumber==0)
+                        {
+                            goto admin;
                         }
                         else
                         {
@@ -206,7 +222,7 @@ namespace AptekMenage
             else
             {
                 Helper.WriteTextWithColor(ConsoleColor.Red, "Username or Password incorrect");
-                goto goadmin;
+                goto admin;
 
             }
         }

@@ -60,7 +60,7 @@ namespace AptekMenage.Controllers
                 {
                     Console.WriteLine($"Id - {dbowner.Id}, Name - {dbowner.Name}, {dbowner.Surname}");
                 }
-                Helper.WriteTextWithColor(ConsoleColor.DarkCyan, "Enter group id:");
+               id: Helper.WriteTextWithColor(ConsoleColor.Green, "Enter group id:");
                 int chosenId;
                 string id = Console.ReadLine();
                 var result = int.TryParse(id, out chosenId);
@@ -69,9 +69,9 @@ namespace AptekMenage.Controllers
                     var owner = ownerRepository.Get(o => o.Id == chosenId);
                     if (owner != null)
                     {
-                        Helper.WriteTextWithColor(ConsoleColor.Cyan, "Enter new owner name");
+                        Helper.WriteTextWithColor(ConsoleColor.Green, "Enter new owner name");
                         string newName = Console.ReadLine();
-                        Helper.WriteTextWithColor(ConsoleColor.Cyan, "Enter new owner surname");
+                        Helper.WriteTextWithColor(ConsoleColor.Green, "Enter new owner surname");
                         string newSurname = Console.ReadLine();
                         var newOwner = new Owner
                         {
@@ -81,12 +81,13 @@ namespace AptekMenage.Controllers
 
                         };
                         ownerRepository.Update(newOwner);
-                        Helper.WriteTextWithColor(ConsoleColor.Green, $"Name:{newName}, Surname:{newSurname} updated old Name:{owner.Name} Surname: {owner.Surname}");
+                        Helper.WriteTextWithColor(ConsoleColor.Green, $"Name:{newName}, Surname:{newSurname} updated ");
 
                     }
                     else
                     {
                         Helper.WriteTextWithColor(ConsoleColor.Red, "Enter Correct id");
+                        goto id;
                     }
 
 
@@ -94,6 +95,7 @@ namespace AptekMenage.Controllers
                 else
                 {
                     Helper.WriteTextWithColor(ConsoleColor.Red, "Enter id correct format");
+                    goto id;
                 }
             }
             else
@@ -111,7 +113,7 @@ namespace AptekMenage.Controllers
                 {
                     Helper.WriteTextWithColor(ConsoleColor.Green, $"Id - {dbOwner.Id}, Name - {dbOwner.Name} Surname-{dbOwner.Surname}");
                 }
-                Helper.WriteTextWithColor(ConsoleColor.Yellow, "Enter Owner Id");
+                id: Helper.WriteTextWithColor(ConsoleColor.Yellow, "Enter Owner Id");
                 int chosenId;
                 string id = Console.ReadLine();
                 var result = int.TryParse(id, out chosenId);
@@ -128,11 +130,13 @@ namespace AptekMenage.Controllers
                     else
                     {
                         Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct Id");
+                        goto id;
                     }
                 }
                 else
                 {
                     Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct format Id");
+                    goto id;
                 }
             }
             else

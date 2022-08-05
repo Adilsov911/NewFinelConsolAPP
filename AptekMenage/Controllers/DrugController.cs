@@ -28,9 +28,9 @@ namespace AptekMenage.Controllers
             var drugStores = durgStoreRepository.GetAll();
             if (drugStores.Count > 0)
             {
-                Helper.WriteTextWithColor(ConsoleColor.Cyan, "Enter Drug Name");
+                Helper.WriteTextWithColor(ConsoleColor.Green, "Enter Drug Name");
                 string drugName = Console.ReadLine();
-            count: Helper.WriteTextWithColor(ConsoleColor.Cyan, "Enter Drug Count");
+            count: Helper.WriteTextWithColor(ConsoleColor.Green, "Enter Drug Count");
                 string count = Console.ReadLine();
                 byte drugCount;
                 bool result = byte.TryParse(count, out drugCount);
@@ -39,16 +39,16 @@ namespace AptekMenage.Controllers
                     if (drugCount >= 0)
                     {
 
-                    price: Helper.WriteTextWithColor(ConsoleColor.Cyan, "Enter Drug Price");
+                    price: Helper.WriteTextWithColor(ConsoleColor.Green, "Enter Drug Price");
                         string price = Console.ReadLine();
                         double drupPrice;
                         bool results = double.TryParse(price, out drupPrice);
                         if (results == true)
                         {
-                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "All DrugStores");
+                            Helper.WriteTextWithColor(ConsoleColor.Green, "All DrugStores");
                             foreach (var drugStore in drugStores)
                             {
-                                Helper.WriteTextWithColor(ConsoleColor.Cyan, $"Drug Store Id - {drugStore.Id} Name - {drugStore.Name}");
+                                Helper.WriteTextWithColor(ConsoleColor.Green, $"Drug Store Id - {drugStore.Id} Name - {drugStore.Name}");
                             }
                         id: Helper.WriteTextWithColor(ConsoleColor.Green, "Enter DrugStore Id");
                             string id = Console.ReadLine();
@@ -67,7 +67,7 @@ namespace AptekMenage.Controllers
                                         DrugStore = drugStore,
                                     };
                                     var creatDrug = drugRepository.Create(drug);
-                                    Helper.WriteTextWithColor(ConsoleColor.Green, $"Drug is Created Name-{drugName} {drugCount} {drupPrice} Drug Store Name-{drug.DrugStore.Name} ");
+                                    Helper.WriteTextWithColor(ConsoleColor.Green, $"Drug is Created Name: {drugName} Drug Count: {drugCount} Drug Price: {drupPrice} Drug Store Name: {drug.DrugStore.Name} ");
 
                                 }
                                 else
@@ -113,7 +113,7 @@ namespace AptekMenage.Controllers
             var drugs = drugRepository.GetAll();
             if (drugs.Count > 0)
             {
-                Helper.WriteTextWithColor(ConsoleColor.Cyan, "All Drug");
+                Helper.WriteTextWithColor(ConsoleColor.Green, "All Drug");
                 foreach (var drug in drugs)
                 {
                     Helper.WriteTextWithColor(ConsoleColor.Green, $"Id -{drug.Id} Name -{drug.Name} Store {drug.DrugStore.Name}");
@@ -129,7 +129,7 @@ namespace AptekMenage.Controllers
                     {
                         Helper.WriteTextWithColor(ConsoleColor.Green, "Enter new Name");
                         string newName = Console.ReadLine();
-                    count: Helper.WriteTextWithColor(ConsoleColor.Cyan, "Enter Drug new Count");
+                    count: Helper.WriteTextWithColor(ConsoleColor.Green, "Enter Drug new Count");
                         string count = Console.ReadLine();
                         byte drugCount;
                         bool results = byte.TryParse(count, out drugCount);
@@ -149,7 +149,7 @@ namespace AptekMenage.Controllers
 
                                     foreach (var drugStore in drugStores)
                                     {
-                                        Helper.WriteTextWithColor(ConsoleColor.Cyan, $" Id - {drugStore.Id}  Name - {drugStore.Name}");
+                                        Helper.WriteTextWithColor(ConsoleColor.Green, $" Id - {drugStore.Id}  Name - {drugStore.Name}");
                                     }
                                 id: Helper.WriteTextWithColor(ConsoleColor.Green, "Enter Drug Store Id");
                                     int drugStoreid;
@@ -160,18 +160,14 @@ namespace AptekMenage.Controllers
                                         var drugStore = durgStoreRepository.Get(d => d.Id == drugStoreid);
                                         if (drugStore != null)
                                         {
-                                            Drug druggist1 = new Drug()
-                                            {
-                                                Id = drug.Id,
-                                                Name = newName,
-                                                Count = drugCount,
-                                                Price = drugPrice,
-                                                DrugStore = drugStore
+                                            drug.DrugStore=drugStore;
+                                            drug.Price = int.Parse(price);
+                                            drug.Count = int.Parse(count);
+                                            drug.Name = newName;
+                                            
 
-
-                                            };
-                                            var creatDrug = drugRepository.Create(drug);
-                                            Helper.WriteTextWithColor(ConsoleColor.Cyan, $"Drug Updated - {drug.Name} Count: {drug.Count} Price: {drug.Price} Drug Store Name {drug.DrugStore.Name}");
+                                            drugRepository.Update(drug);
+                                            Helper.WriteTextWithColor(ConsoleColor.Green, $"Drug Updated : {drug.Name} Count: {drug.Count} Price: {drug.Price} Drug Store Name {drug.DrugStore.Name}");
 
                                         }
                                         else
@@ -233,9 +229,9 @@ namespace AptekMenage.Controllers
                 Helper.WriteTextWithColor(ConsoleColor.Green, "All Drug");
                 foreach (var drug in drugs)
                 {
-                    Helper.WriteTextWithColor(ConsoleColor.Cyan, $" Id - {drug.Id} Name-{drug.Name} Drug Store - {drug.DrugStore.Name}  ");
+                    Helper.WriteTextWithColor(ConsoleColor.Green, $" Id - {drug.Id} Name-{drug.Name} Drug Store - {drug.DrugStore.Name}  ");
                 }
-            id: Helper.WriteTextWithColor(ConsoleColor.Yellow, "Enter Drug Id");
+            id: Helper.WriteTextWithColor(ConsoleColor.Green, "Enter Drug Id");
                 int chosenId;
                 string id = Console.ReadLine();
                 var result = int.TryParse(id, out chosenId);
@@ -275,7 +271,7 @@ namespace AptekMenage.Controllers
                 Helper.WriteTextWithColor(ConsoleColor.Green, "All Drug");
                 foreach (var drug in drugs)
                 {
-                    Helper.WriteTextWithColor(ConsoleColor.Cyan, $" Id - {drug.Id} Name-{drug.Name} Price: {drug.Price} Count:{drug.Count} Drug Store - {drug.DrugStore.Name}  ");
+                    Helper.WriteTextWithColor(ConsoleColor.Green, $" Id - {drug.Id} Name: {drug.Name} Price: {drug.Price} Count:{drug.Count} Drug Store - {drug.DrugStore.Name}  ");
                 }
             }
             else
@@ -292,7 +288,7 @@ namespace AptekMenage.Controllers
                 Helper.WriteTextWithColor(ConsoleColor.Green, "All Drug Stores");
                 foreach (var drugStore in drugStores)
                 {
-                    Helper.WriteTextWithColor(ConsoleColor.Cyan, $"Drug Store: {drugStore.Id} Drugs Name {drugStore.Name}");
+                    Helper.WriteTextWithColor(ConsoleColor.Green, $"Drug Store: {drugStore.Id} Drugs Name {drugStore.Name}");
                 }
                 idd: Helper.WriteTextWithColor(ConsoleColor.Green, "Enter Drug Store Id");
                 int chosenId;
