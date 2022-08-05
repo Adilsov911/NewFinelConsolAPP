@@ -83,15 +83,16 @@ namespace AptekMenage
                         {
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "1 - Create DrugStore");
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "2 - Update DrugStore");
-                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "3 - GetAll DrugStore");
-                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "4 - Delete DrugStore");
-                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "5 - Get All Owners DrugStores");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "3 - Sale Drug");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "4 - GetAll DrugStore");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "5 - Delete DrugStore");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "6 - Get All Owners DrugStores");
                             Helper.WriteTextWithColor(ConsoleColor.Magenta, "Select Options:");
                             number = Console.ReadLine();
 
 
                             result = int.TryParse(number, out selectedNumber);
-                            if (selectedNumber >= 0 && selectedNumber <= 5)
+                            if (selectedNumber >= 0 && selectedNumber <= 6)
                             {
                                 switch (selectedNumber)
                                 {
@@ -110,6 +111,9 @@ namespace AptekMenage
                                         break;
                                         case(int)DrugStoreOptions.DeleteDrugStore:
                                         drugStoreController.Delete();
+                                        break;
+                                    case (int)DrugStoreOptions.SaleDrug:
+                                        drugStoreController.Sale();
                                         break;
                                     case (int)OwnerOptions.Exit:
                                         ownerController.Exit();
@@ -162,9 +166,9 @@ namespace AptekMenage
                         {
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "1 - Create Drug");
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "2 - Update Drug");
-                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "3 - GetAll Drug");
-                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "4 - Delete Drug");
-                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "5 - ");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "3 - Delete Drug");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "4 - GetAll Drug");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "5 - Get All Drug from Drug Store");
                             Helper.WriteTextWithColor(ConsoleColor.Magenta, "Select Options:");
                             number = Console.ReadLine();
 
@@ -175,6 +179,18 @@ namespace AptekMenage
                                 {
                                     case (int)DrugOptions.DrugCreat:
                                         drugController.Creat();
+                                        break;
+                                    case (int)DrugOptions.DrugUpdate:
+                                        drugController.Updete();
+                                        break;
+                                    case (int)DrugOptions.DrugDelete:
+                                        drugController.Delete();
+                                        break;
+                                    case (int)DrugOptions.GetAllDrugs:
+                                        drugController.GetAll();
+                                        break;
+                                    case (int)DrugOptions.GetAllDrugsDrugStore:
+                                        drugController.GetAllStoresDrug();
                                         break;
                                 }
                             }

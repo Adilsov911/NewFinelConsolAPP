@@ -13,11 +13,13 @@ namespace AptekMenage.Controllers
     {
         private DrugStoreRepository durgStoreRepository;
         private OwnerRepository ownerRepository;
+        private DrugRepository drugRepository;
 
         public DrugStoreController()
         {
             durgStoreRepository = new DrugStoreRepository();
             ownerRepository = new OwnerRepository();
+            drugRepository = new DrugRepository();
         }
         public void Creat()
         {
@@ -172,7 +174,7 @@ namespace AptekMenage.Controllers
                 Helper.WriteTextWithColor(ConsoleColor.Cyan, "All DrugStores");
                 foreach (var drugStore in drugStores)
                 {
-                    Helper.WriteTextWithColor(ConsoleColor.Green, $"Name -{drugStore.Name} Owner Name {drugStore.Owner.Name} ");
+                    Helper.WriteTextWithColor(ConsoleColor.Green, $"Name -{drugStore.Name} Owner Name {drugStore.Owner.Name} id-{drugStore.Id}");
                 }
             }
             else
@@ -199,6 +201,82 @@ namespace AptekMenage.Controllers
         }
         public void Sale()
         {
+            GetAll();
+            Helper.WriteTextWithColor(ConsoleColor.Gray, "Please Slecet DrugStore id");
+            var id=Console.ReadLine();
+            int drugStoreId;
+            var results=int.TryParse(id, out drugStoreId);
+            if (results)
+            {
+                var dbDrugStore=durgStoreRepository.Get(d=>d.Id==drugStoreId);
+                if(dbDrugStore!=null)
+                {
+                    var dbDrugs = drugRepository.GetAll(d => d.DrugStore == dbDrugStore);
+                    if (dbDrugs.Count>0)
+                    {
+                        foreach (var drug in dbDrugs)
+                        {
+                            Helper.WriteTextWithColor(ConsoleColor.DarkCyan, $"Drug Id:{drug.Id} Drug name:{drug.Name} Drug price:{drug.Price} Drug Cout{drug.Count}");
+                        }
+                        Helper.WriteTextWithColor(ConsoleColor.Gray, "Please enter drug id");
+                        var drugid = Console.ReadLine();
+                        int DrugId;
+                        results = int.TryParse(drugid, out DrugId);
+                        if (results)
+                        {
+                            var dbDrug = drugRepository.Get(d => d.Id == DrugId);
+                            if (dbDrug!=null&& dbDrug.Count>0)
+                            {
+                                Helper.WriteTextWithColor(ConsoleColor.DarkGreen, $"Drug count{dbDrug.Count} please enter count");
+                                var count = Console.ReadLine();
+                                int dbcount;
+                                results = int.TryParse(count, out dbcount);
+                                if(results)
+                                {
+                                    if(dbcount<=dbDrug.Count)
+                                    {
+                                        Helper.WriteTextWithColor(ConsoleColor.Cyan, $"Sale Price {dbcount * dbDrug.Price}");
+                                        dbDrug.Count-=dbcount;
+                                    }
+                                    else
+                                    {
+                                        Helper.WriteTextWithColor(ConsoleColor.Red, "Enter");
+                                    }
+                                }
+                                else
+                                {
+                                    Helper.WriteTextWithColor(ConsoleColor.Red, "Plesae enter correct count");
+                                }
+
+
+                            }
+                            else
+                            {
+                                Helper.WriteTextWithColor(ConsoleColor.Red, "null");  
+                            }
+
+                        }
+                        else
+                        {
+                            Helper.WriteTextWithColor(ConsoleColor.Red, "null");
+                        }
+                    }
+                    else
+                    {
+                        Helper.WriteTextWithColor(ConsoleColor.Green, "We dont have drug ");
+                    }
+                   
+                }
+                else
+                {
+                    Helper.WriteTextWithColor(ConsoleColor.DarkCyan, "We dont have this id Drugstore");
+                }
+
+            }
+            else
+            {
+                Helper.WriteTextWithColor(ConsoleColor.DarkBlue, "Please enter Correct id");
+            }
 
         }
         public void Delete()

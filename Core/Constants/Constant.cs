@@ -19,6 +19,7 @@ namespace Core.Constants
         Exit,
         CreatDrugStore,
         UpdateDrugStore,
+        SaleDrug,
         GetAllDrugStore,
         DeleteDrugStore,
         GetOwnerDrugStore,
@@ -28,6 +29,7 @@ namespace Core.Constants
         Exit,
         DruggistCreat,
         DruggistUpdate,
+      
         GetAll,
         Delete,
         GetAllDruggistinDrugStore,
@@ -36,6 +38,11 @@ namespace Core.Constants
     {
         Exit,
         DrugCreat,
+        DrugUpdate,
+        DrugDelete,
+        GetAllDrugs,
+        GetAllDrugsDrugStore,
+
 
     }
 

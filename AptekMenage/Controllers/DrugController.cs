@@ -21,6 +21,7 @@ namespace AptekMenage.Controllers
             durgStoreRepository = new DrugStoreRepository();
             ownerRepository = new OwnerRepository();
             druggistRepository = new DruggistRepository();
+            drugRepository=new DrugRepository();
         }
         public void Creat()
         {

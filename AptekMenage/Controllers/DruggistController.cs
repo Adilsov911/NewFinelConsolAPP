@@ -180,6 +180,11 @@ namespace AptekMenage.Controllers
                                 goto id;
                             }
                         }
+                        else
+                        {
+                            Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct Format number");
+                            goto age;
+                        }
                        
 
                     }
