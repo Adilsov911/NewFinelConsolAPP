@@ -60,7 +60,7 @@ namespace AptekMenage.Controllers
                                 DrugStore = drugStore
                             };
                             var creatDruggist = druggistRepository.Create(druggist);
-                            Helper.WriteTextWithColor(ConsoleColor.Green, $"Druggist Created Name: {druggist.Name} Surname: {druggist.Surname} Age: {druggist.Age} Drug Store Name {druggist.DrugStore.Name}");
+                            Helper.WriteTextWithColor(ConsoleColor.Green, $"Druggist Created Name: {druggist.Name} Surname: {druggist.Surname} Age: {druggist.Age} Drug Store Name: {druggist.DrugStore.Name}");
                         }
                         else
                         {
@@ -206,18 +206,45 @@ namespace AptekMenage.Controllers
         }
         public void GetAllDruggistinDrugStore()
         {
-            var drugStores = druggistRepository.GetAll();
             var druggists = druggistRepository.GetAll();
-            if (true)
+            var drugStores = durgStoreRepository.GetAll();
+            if (drugStores.Count>0)
             {
-                foreach (var druggist in druggists)
+                Helper.WriteTextWithColor(ConsoleColor.Green, "All Drug Store");
+                foreach (var drugStore in drugStores)
                 {
-                    Helper.WriteTextWithColor(ConsoleColor.Green, $"Store Name - {druggist.DrugStore.Name} Druggist Name {druggist.Name} {druggist.Surname} ");
+                    Helper.WriteTextWithColor(ConsoleColor.Green, $"Id - {drugStore.Id} Name - {drugStore.Name} ");
                 }
+                 id: Helper.WriteTextWithColor(ConsoleColor.Green, "Enter Drug Store Id");
+                int chosenId;
+                string id = Console.ReadLine();
+                var result = int.TryParse(id, out chosenId);
+                if (result)
+                {
+                    var drugStore = durgStoreRepository.Get(d => d.Id == chosenId);
+                    if (drugStore != null)
+                    {
+                        Helper.WriteTextWithColor(ConsoleColor.Green, $"Drug Store Name - {drugStore.Name} Druggist Name - {drugStore.Druggists}");
+                    }
+                    else
+                    {
+                        Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct id");
+                        goto id;
+                    }
+
+                }
+                else
+                {
+                    Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct format id");
+                    goto id;
+                }
+
+
             }
             else
             {
-                Helper.WriteTextWithColor(ConsoleColor.Red, "Nothing any Druggist and Stores");
+                Helper.WriteTextWithColor(ConsoleColor.Red, "Nothing any Store and Druggist");
+                
             }
         }
         public void Delete()
