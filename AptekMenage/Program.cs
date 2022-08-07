@@ -177,6 +177,7 @@ namespace AptekMenage
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "3 - Delete Drug");
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "4 - GetAll Drug");
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "5 - Get All Drug from Drug Store");
+                            Helper.WriteTextWithColor(ConsoleColor.Cyan, "6 - Filter Drugs");
                             Helper.WriteTextWithColor(ConsoleColor.Cyan, "0 - Main Menu");
                             Helper.WriteTextWithColor(ConsoleColor.Magenta, "Select Options:");
                             number = Console.ReadLine();
@@ -200,6 +201,9 @@ namespace AptekMenage
                                         break;
                                     case (int)DrugOptions.GetAllDrugsDrugStore:
                                         drugController.GetAllStoresDrug();
+                                        break;
+                                    case (int)DrugOptions.FilterDrug:
+                                        drugController.Filter();
                                         break;
                                     case (int)OwnerOptions.Exit:
                                         goto manu;

@@ -21,7 +21,7 @@ namespace AptekMenage.Controllers
             durgStoreRepository = new DrugStoreRepository();
             ownerRepository = new OwnerRepository();
             druggistRepository = new DruggistRepository();
-            drugRepository=new DrugRepository();
+            drugRepository = new DrugRepository();
         }
         public void Creat()
         {
@@ -160,11 +160,11 @@ namespace AptekMenage.Controllers
                                         var drugStore = durgStoreRepository.Get(d => d.Id == drugStoreid);
                                         if (drugStore != null)
                                         {
-                                            drug.DrugStore=drugStore;
+                                            drug.DrugStore = drugStore;
                                             drug.Price = int.Parse(price);
                                             drug.Count = int.Parse(count);
                                             drug.Name = newName;
-                                            
+
 
                                             drugRepository.Update(drug);
                                             Helper.WriteTextWithColor(ConsoleColor.Green, $"Drug Updated : {drug.Name} Count: {drug.Count} Price: {drug.Price} Drug Store Name {drug.DrugStore.Name}");
@@ -290,7 +290,7 @@ namespace AptekMenage.Controllers
                 {
                     Helper.WriteTextWithColor(ConsoleColor.Green, $"Drug Store: {drugStore.Id} Drugs Name {drugStore.Name}");
                 }
-                idd: Helper.WriteTextWithColor(ConsoleColor.Green, "Enter Drug Store Id");
+            idd: Helper.WriteTextWithColor(ConsoleColor.Green, "Enter Drug Store Id");
                 int chosenId;
                 string id = Console.ReadLine();
                 var result = int.TryParse(id, out chosenId);
@@ -313,11 +313,42 @@ namespace AptekMenage.Controllers
                     Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct format id");
                     goto idd;
                 }
-                
+
             }
             else
             {
                 Helper.WriteTextWithColor(ConsoleColor.Red, "Nothing Any Drugs");
+            }
+        }
+        public void Filter()
+        {
+            var drugs = drugRepository.GetAll();
+            if (drugs.Count > 0)
+            {
+                Helper.WriteTextWithColor(ConsoleColor.Green, "Please enter filter price");
+                string filterprice = Console.ReadLine();
+                double price;
+                bool result = double.TryParse(filterprice, out price);
+                if (result)
+                {
+                    Helper.WriteTextWithColor(ConsoleColor.Green, "All Drugs List:");
+                    foreach (var drug in drugs)
+                    {
+                        if (drug.Price <= price)
+                        {
+                            Helper.WriteTextWithColor(ConsoleColor.Green, $"Id: {drug.Id}, Name: {drug.Name}, Price: {drug.Price}, Count: {drug.Count}");
+                        }
+                    }
+                }
+                else
+                {
+                    Helper.WriteTextWithColor(ConsoleColor.Red, "Enter price in correct format");
+                }
+            }
+            else
+            {
+
+                Helper.WriteTextWithColor(ConsoleColor.Red, "Nothing any drugs");
             }
         }
 

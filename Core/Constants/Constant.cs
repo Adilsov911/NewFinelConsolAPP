@@ -41,6 +41,7 @@ namespace Core.Constants
         DrugDelete,
         GetAllDrugs,
         GetAllDrugsDrugStore,
+        FilterDrug
 
 
     }
